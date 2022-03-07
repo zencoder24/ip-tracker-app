@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {StyledEngineProvider, CssBaseline} from "@mui/material";
+import {ThemeProvider, createTheme} from "@mui/material";
+import {grey} from "@mui/material/colors";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import Top from "./components/Top/Top.jsx";
+import Map from "./components/Map/Map";
+
+const theme = createTheme({
+    palette:{
+        primary:{
+            main: grey[50]
+        }
+    },
+    typography: {
+        fontFamily: [
+            'Rubik',
+            'sans-serif',
+        ].join(','),
+    },});
+
+
+const App = (props) => {
+  return(
+      <>
+        <StyledEngineProvider injectFirst>
+            <ThemeProvider theme={theme}>
+                <CssBaseline/>
+                <Top/>
+                <Map/>
+            </ThemeProvider>
+        </StyledEngineProvider>
+      </>
+  )
 }
 
 export default App;
