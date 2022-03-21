@@ -75,7 +75,7 @@ export default makeStyles(() => ({
         display: "none",
         [theme.breakpoints.up('md')]:{
             display: 'flex',
-            padding: "0, 5px"
+            padding: "0 5px"
 
         },
 
