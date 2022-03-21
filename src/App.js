@@ -27,7 +27,7 @@ const App = () => {
             timezone: '',
             isp: ''});
     const [latLng, setLatLng] = useState({lat: 0, lng: 0});
-    const [Lmap, setLMap] = useState(null)
+    // const [Lmap, setLMap] = useState(null)
     const [formInvalid, setFormInvalid] = useState(false)
 
 
@@ -94,7 +94,7 @@ const App = () => {
                 <CssBaseline/>
                 <Top  setIpAddress={setIpAddress} onClick={ipSubmit} formInvalid={formInvalid}/>
                 <LocationInfo locationInfo={locationInfo}/>
-                <Map setLMap={setLMap} latLng={latLng}  />
+                <Map  latLng={latLng}  />
             </ThemeProvider>
         </StyledEngineProvider>
       </>

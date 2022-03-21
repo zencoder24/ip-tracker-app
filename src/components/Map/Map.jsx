@@ -15,12 +15,12 @@ function ChangeView({ center, zoom }) {
     return null;
 }
 
-const Map = ({latLng, setLMap, center, zoom}) => {
+const Map = ({latLng, center, zoom}) => {
 
     const classes = useStyles();
     return (
         //The 'whenCreated' prop sets the map instance to the value Lmap
-        <MapContainer className={classes.leafletContainer} whenCreated={setLMap} center={center} zoom={zoom}>
+        <MapContainer className={classes.leafletContainer}  center={center} zoom={zoom}>
             <ChangeView center={[latLng.lat, latLng.lng]} zoom={11}/>
             <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
