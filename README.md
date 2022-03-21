@@ -1,70 +1,131 @@
-# Getting Started with Create React App
+# Frontend Mentor - IP address tracker solution
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a solution to the [IP address tracker challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/ip-address-tracker-I8-0yYAH0). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Available Scripts
+## Table of contents
 
-In the project directory, you can run:
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Continued development](#continued-development)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
+- [Acknowledgments](#acknowledgments)
 
-### `npm start`
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Overview
 
-### `npm test`
+### The challenge
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Users should be able to:
 
-### `npm run build`
+- View the optimal layout for each page depending on their device's screen size
+- See hover states for all interactive elements on the page
+- See their own IP address on the map on the initial page load
+- Search for any IP addresses or domains and see the key information and location
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Screenshot
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+![](./screenshots/IP-Tracker-Desktop.png)
+![](./screenshots/IP-Tracker-Mobile.png)
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `npm run eject`
+### Links
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## My process
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Built with
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- [React](https://reactjs.org/) - JS library
+- [Material UI](https://mui.com/) - React UI Library
+- [React-Leaflet](https://react-leaflet.js.org/) - React Components for Leaflet Maps
+- [JSS](https://cssinjs.org/?v=v10.9.0) - Authoring tool for CSS using JS
+- [IP Geolocation API](https://rapidapi.com/natkapral/api/ip-geo-location/)
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### What I learned
 
-### Code Splitting
+Throughout this project, I learned how to consume APIs and display the information I received using React. I also enjoyed the challenge of learning how to use a UI library like Material 
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+Below are snippets of code I learned about and used in this project.:
 
-### Analyzing the Bundle Size
+In this snippet, I learned that Leaflet's MapContainer props are immutable after they have been set for the first it loades and only be updated by a child component
+```jsx
+function ChangeView({ center, zoom }) {
+  const map = useMap();
+  map.setView(center, zoom);
+  return null;
+}
+<MapContainer className={classes.leafletContainer} whenCreated={setLMap} center={center} zoom={zoom}>
+  <ChangeView center={[latLng.lat, latLng.lng]} zoom={11}/>
+...
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+The use of concept of theming in Material UI allowed me to set custom breakpoints and font styles in one central place. I was then able to import the theme in my JSS
+```jsx
+const theme = createTheme({
+  typography: {
+    fontFamily: [
+      'Rubik',
+      'sans-serif',
+    ].join(','),
+  },
 
-### Making a Progressive Web App
+  breakpoints: {
+    values: {
+      xs: 375,
+      sm: 500,
+      md: 768,
+      lg: 1024,
+      xl: 1440
+    },
+  },
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+});
 
-### Advanced Configuration
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+I used React hooks for the first time in this app. One of them was the useEffect hook. Because of this hook, I am able to get the user's IP information from their device and display it when the app loads
+```jsx
+ useEffect(() => {
+  initialIPDisplay();
+}, [initialIPDisplay]);
 
-### Deployment
+```
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
-### `npm run build` fails to minify
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Continued development
+
+Areas that I want to continue to focus on is getting more familiar with React Hooks. There are more things I would like to explore in Leaflet and UI Libraries such as Material UI. 
+
+
+
+### Useful resources
+
+- [Material UI's Documentation](https://mui.com/getting-started/installation/) - This is very well written documentation. Everything I wanted to look for, I could find in an instant
+- [Getting a Map Instance in Leaflet](https://stackoverflow.com/questions/65394203/leaflet-react-get-map-instance-in-functional-component) - There many StackOverflow posts I refer to when coding this project but this one was may favorite. I wasnt sure how to get an instance of a map and use it in the parent class but this post helped.
+
+
+
+## Author
+
+- Website - [Rodderick Garland](https://www.rodthedev.com/)
+- Frontend Mentor - [@zencoder24](https://www.frontendmentor.io/profile/zencoder24)
+
+
+
+
+## Acknowledgments
+
+The [Japanese jazz when driving on a warm night](https://open.spotify.com/playlist/0HohmR6OHID26KBb5uYJpj?si=60700061c69141cf) playlist
+
